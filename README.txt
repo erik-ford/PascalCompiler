@@ -1,6 +1,6 @@
 Erik Ford
 CSCI 465
-Pascal Compiler - First Delivery
+Pascal Compiler - Second Delivery
 Fall 2019
 
 PascalCompiler - This is the main driver program. Makes a call to IOModule to start compilation.
@@ -16,3 +16,7 @@ Token - This is an object class that represents the notion of a token with a sym
 TokenQueue - This is a FIFO queue implementation that accepts objects of type Token. Has standard queue operations.
 
 SymbolTable - This is a hashtable implementation of the symbol table that when instantiated, initializes the hashtable with all known symbol types.
+
+Parser - This performs the syntax and semantic analysis of the program using the TokenQueue created by the Lexer.
+
+TypeDirectory - This acts as a lookup for all declared variables and subroutines and their types.

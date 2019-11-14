@@ -23,13 +23,58 @@ public class IOModule
 	   phase of compilation
 	 * @param inFile - name of source file
 	 ***************************************/
-   public static void LexicalAnalysis(String inFile)
+   public static TokenQueue LexicalAnalysis(String inFile)
    {
-	   //declaration of variables
+	   
+	   TokenQueue tokens;
+	   readFile(inFile);
+	   
+	   //initialize char and line counters
+	   currLine = sourceLineChars.get(currLineIndex);
+	   tokens = Lexer.getTokens();
+	   
+	   //First delivery: Print out list of tokens and symbol types////////////////////////////////////////////
+	   TokenQueue printTokens = new TokenQueue(tokens);
+	   PrintWriter writer = null;
+	   try 
+	   {
+		   writer = new PrintWriter("output.txt");
+	   }
+	   catch (Exception e)
+	   {
+		   System.err.println("Error writing to output file.");
+		   System.exit(-1);
+	   }
+	   
+	   writer.printf("%-25s %-25s \n", "Token text:", "Symbol type:");
+	   writer.printf("%-25s %-25s \n", "----------------", "-----------------");
+	   
+	   if (printTokens.isEmpty()) {System.out.println("Token copying failed.");}
+	   
+	   while (!printTokens.isEmpty())
+	   {
+		   Token t = printTokens.pop();
+		   //System.out.println(t.getText() + "\t\t" + t.getSymbol());
+		   writer.printf("%-25s %-25s \n", t.getText(), t.getSymbol());
+	   }
+	   if (tokens.isEmpty()) {System.out.println("Reference copy made.");}
+	   writer.close();
+	   //////////////////////////////////////////////////////////////////////////////////////////////////////
+	   
+	   return tokens;
+   }
+   
+   /************************************************
+    * readFile will read the source file and
+      decompose it into a readable format for
+     the lexical analysis phase
+    * @param inFile - file name to be read
+    ************************************************/
+   public static void readFile(String inFile)
+   {
+	 //declaration of variables
 	   File src = null;
 	   Scanner scnr = null;
-	   TokenQueue tokens = null;
-	   
 	   
 	   //initialize file pointer and scanner
 	   src = new File(inFile);
@@ -51,35 +96,6 @@ public class IOModule
 		   char[] chars = line.toCharArray();
 		   sourceLineChars.add(chars);
 	   }
-	   
-	   //initialize char and line counters
-	   currLine = sourceLineChars.get(currLineIndex);
-	   tokens = Lexer.getTokens();
-	   
-	   //First delivery: Print out list of tokens and symbol types////////////////////////////////////////////
-	   PrintWriter writer = null;
-	   try 
-	   {
-		   writer = new PrintWriter("output.txt");
-	   }
-	   catch (Exception e)
-	   {
-		   System.err.println("Error writing to output file.");
-		   System.exit(-1);
-	   }
-	   
-	   writer.printf("%-25s %-25s \n", "Token text:", "Symbol type:");
-	   writer.printf("%-25s %-25s \n", "----------------", "-----------------");
-	   
-	   while (!tokens.isEmpty())
-	   {
-		   Token t = tokens.pop();
-		   //System.out.println(t.getText() + "\t\t" + t.getSymbol());
-		   writer.printf("%-25s %-25s \n", t.getText(), t.getSymbol());
-	   }
-	   
-	   writer.close();
-	   //////////////////////////////////////////////////////////////////////////////////////////////////////
    }
    
    /*************************************************
@@ -94,7 +110,7 @@ public class IOModule
 		   currLineIndex++;
 		   currCharIndex = 0;
 		   if (currLineIndex >= sourceLineChars.size())
-			   return 'µ';
+			   return '`';
 		   else
 			   currLine = sourceLineChars.get(currLineIndex);
 	   }
@@ -112,4 +128,19 @@ public class IOModule
 	   currLine = sourceLineChars.get(currLineIndex);
 	   currCharIndex = 0;
    }
+   
+   /***************************************************
+    * Calls parser module to perform syntax analysis
+    * @param tokens - TokenQueue constructed by Lexer
+    ***************************************************/
+   public static void SyntaxAnalysis(TokenQueue tokens)
+   {
+	   boolean success = Parser.start(tokens);
+	   
+	   if (success) 
+	   {
+		   System.out.println("Program has no syntax errors.");
+	   }
+   }
 }
+

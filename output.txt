@@ -8,7 +8,7 @@ input                     identifier_symbol
 output                    identifier_symbol         
 )                         rparen_symbol             
 ;                         semicolon_symbol          
-?                         illegal_symbol            
+newline                   newline_symbol            
 var                       var_symbol                
 x                         identifier_symbol         
 ,                         comma_symbol              
@@ -16,6 +16,7 @@ y                         identifier_symbol
 :                         colon_symbol              
 integer                   integer_symbol            
 ;                         semicolon_symbol          
+newline                   newline_symbol            
 function                  function_symbol           
 gcd                       identifier_symbol         
 (                         lparen_symbol             
@@ -28,7 +29,9 @@ integer                   integer_symbol
 :                         colon_symbol              
 integer                   integer_symbol            
 ;                         semicolon_symbol          
+newline                   newline_symbol            
 begin                     begin_symbol              
+newline                   newline_symbol            
 if                        if_symbol                 
 b                         identifier_symbol         
 =                         equal_symbol              
@@ -40,6 +43,7 @@ a                         identifier_symbol
 else                      else_symbol               
 gcd                       identifier_symbol         
 :=                        assign_symbol             
+gcd                       identifier_symbol         
 (                         lparen_symbol             
 b                         identifier_symbol         
 ,                         comma_symbol              
@@ -47,17 +51,21 @@ a                         identifier_symbol
 mod                       mod_symbol                
 b                         identifier_symbol         
 )                         rparen_symbol             
+newline                   newline_symbol            
 end                       end_symbol                
 ;                         semicolon_symbol          
+newline                   newline_symbol            
 begin                     begin_symbol              
-read                      read_symbol               
+newline                   newline_symbol            
+read                      identifier_symbol         
 (                         lparen_symbol             
 x                         identifier_symbol         
 ,                         comma_symbol              
 y                         identifier_symbol         
 )                         rparen_symbol             
 ;                         semicolon_symbol          
-write                     write_symbol              
+newline                   newline_symbol            
+write                     identifier_symbol         
 (                         lparen_symbol             
 gcd                       identifier_symbol         
 (                         lparen_symbol             
@@ -66,5 +74,7 @@ x                         identifier_symbol
 y                         identifier_symbol         
 )                         rparen_symbol             
 )                         rparen_symbol             
+newline                   newline_symbol            
 end                       end_symbol                
 .                         period_symbol             
+newline                   newline_symbol            

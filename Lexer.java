@@ -23,34 +23,46 @@ public class Lexer
 	   char nextChar;
 	   Token tempToken = null;
 	   TokenQueue tokens = new TokenQueue();
+	   boolean error = false;
 	   int lineNumber = 1;
 	   
 	   //get next char from I/O and add to current token
 	   nextChar = ' ';
-	   while (nextChar != 'µ')
+	   while (nextChar != '`')
 	   {
 		   nextChar = IOModule.getNextChar();
-		   if (nextChar == '\n')
-		   {
-			   lineNumber++;
-		   }
 		   
 		   tempToken = buildToken(nextChar);
+		   
 		   if (tempToken != null)
 		   {
 			   if (tempToken.getSymbol().equals("illegal_symbol"))
 			   {
 				   System.out.println("Illegal token ( " + tempToken.getText() + " ) on line " + lineNumber);
+				   error = true;
 			   }
 			   if (tempToken.getSymbol().equals("illegalString_symbol"))
 			   {
 				   System.err.println("Missing closing ' on " + lineNumber);
+				   error = true;
 			   }
 			   else //valid token
 			   {
 				   tokens.push(tempToken);
 			   }
 		   }
+		   
+		   if (nextChar == '\n')
+		   {
+			   lineNumber++;
+			   tempToken = new Token("newline", "newline_symbol");
+			   tokens.push(tempToken);
+		   }
+	   }
+	   
+	   if (!error)
+	   {
+		   System.out.println("Program has no lexical errors.");
 	   }
 	   
 	   return tokens;
@@ -211,7 +223,7 @@ public class Lexer
 		   {
 			   type += IOModule.getNextChar();
 			   
-			   if (type.contains("µ")) {return;} //end of file
+			   if (type.contains("`")) {return;} //end of file
 		   }
 	   }
 	   else if (type.equals("(*")) //checking for comment block (*...*)
@@ -220,7 +232,7 @@ public class Lexer
 		   {
 			   type += IOModule.getNextChar();
 			   
-			   if (type.contains("Îµ")) {return;} //end of file
+			   if (type.contains("`")) {return;} //end of file
 		   }
 	   }
 	   else if (type != null)

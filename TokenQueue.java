@@ -10,8 +10,8 @@
  ***********************************************************/
 public class TokenQueue
 {
-   protected Token head = null; //Token at front of TokenQueue
-   protected Token tail = null; //Token at end of TokenQueue
+   public Token head = null; //Token at front of TokenQueue
+   public Token tail = null; //Token at end of TokenQueue
    public int size = 0; //number of Tokens in TokenQueue
    
    /*******************************************
@@ -22,6 +22,17 @@ public class TokenQueue
    {
       head = null;
       tail = null;
+   }
+   
+   /*******************************************
+    * Constructor method to copy a TokenQueue.
+    * @return Initializes copied TokenQueue.
+    *******************************************/
+   public TokenQueue(TokenQueue copy)
+   {
+	   this.head = copy.head;
+	   this.tail = copy.tail;
+	   this.size = copy.size;
    }
    
    /*************************************************
@@ -60,7 +71,7 @@ public class TokenQueue
     ***************************************************/
    public boolean isEmpty()
    {
-	   if (size <= 0)
+	   if (size <= 0 || head == null)
 		   return true;
 	   return false;
    }

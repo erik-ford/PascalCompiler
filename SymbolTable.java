@@ -40,13 +40,14 @@ public class SymbolTable
 	   st.put("ord", "ord_symbol");
 	   st.put("procedure", "procedure_symbol");
 	   st.put("program", "program_symbol");
-	   st.put("read", "read_symbol");
-	   st.put("readln", "readln_symbol");
+	   //st.put("read", "read_symbol");
+	   //st.put("readln", "readln_symbol");
+	   st.put("real", "real_symbol");
 	   st.put("then", "then_symbol");
 	   st.put("var", "var_symbol");
 	   st.put("while", "while_symbol");
-	   st.put("write", "write_symbol");
-	   st.put("writeln", "writeln_symbol");
+	   //st.put("write", "write_symbol");
+	   //st.put("writeln", "writeln_symbol");
 	   st.put("+", "plus_symbol");
 	   st.put("-", "minus_symbol");
 	   st.put("*", "times_symbol");
@@ -69,8 +70,9 @@ public class SymbolTable
 	   st.put("!_number_!", "number_symbol");
 	   st.put("!_quote_!", "quotestring_symbol");
 	   st.put("!_char_!", "litchar_symbol");
-	   st.put("ε", "eofsym_symbol");
+	   st.put("`", "eofsym_symbol");
 	   st.put("!_illegal_!", "illegal_symbol");
+	   st.put("!_newline_!", "newline_symbol");
    }
    
    /************************************************************

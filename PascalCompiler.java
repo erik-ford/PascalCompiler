@@ -19,6 +19,10 @@ public class PascalCompiler
     	fileName = args[0];
     	
     	//call I/O module to handle input code
-    	IOModule.LexicalAnalysis(fileName);
+    	TokenQueue tokens = IOModule.LexicalAnalysis(fileName);
+    	
+    	//call I/O module to process tokens
+    	IOModule.SyntaxAnalysis(tokens);
+    	
     }
 }
