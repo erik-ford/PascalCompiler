@@ -38,7 +38,7 @@ public class IOModule
 	   PrintWriter writer = null;
 	   try 
 	   {
-		   writer = new PrintWriter("output.txt");
+		   writer = new PrintWriter("TokenOutput.txt");
 	   }
 	   catch (Exception e)
 	   {
