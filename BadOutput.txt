@@ -1,0 +1,2 @@
+Program has no lexical errors.
+ERROR: invalid compound_statement on line 3

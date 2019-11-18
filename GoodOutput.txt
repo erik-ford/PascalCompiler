@@ -1,0 +1,2 @@
+Program has no lexical errors.
+Program has no syntax errors.
