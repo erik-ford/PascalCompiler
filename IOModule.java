@@ -1,7 +1,7 @@
 //Erik Ford
 //CSCI 465
 //Compiler Project
-//last updated 9-26-19
+//last updated 11-14-19
 
 import java.io.*;
 import java.util.*;
@@ -25,7 +25,6 @@ public class IOModule
 	 ***************************************/
    public static TokenQueue LexicalAnalysis(String inFile)
    {
-	   
 	   TokenQueue tokens;
 	   readFile(inFile);
 	   
@@ -49,7 +48,7 @@ public class IOModule
 	   writer.printf("%-25s %-25s \n", "Token text:", "Symbol type:");
 	   writer.printf("%-25s %-25s \n", "----------------", "-----------------");
 	   
-	   if (printTokens.isEmpty()) {System.out.println("Token copying failed.");}
+	   //if (printTokens.isEmpty()) {System.out.println("Token copying failed.");}
 	   
 	   while (!printTokens.isEmpty())
 	   {
@@ -57,7 +56,7 @@ public class IOModule
 		   //System.out.println(t.getText() + "\t\t" + t.getSymbol());
 		   writer.printf("%-25s %-25s \n", t.getText(), t.getSymbol());
 	   }
-	   if (tokens.isEmpty()) {System.out.println("Reference copy made.");}
+	   //if (tokens.isEmpty()) {System.out.println("Reference copy made.");}
 	   writer.close();
 	   //////////////////////////////////////////////////////////////////////////////////////////////////////
 	   

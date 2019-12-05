@@ -1,7 +1,7 @@
 //Erik Ford
 //CSCI 465
 //Compiler Project
-//last updated 9-26-19
+//last updated 11-14-19
 
 import java.util.*;
 
@@ -41,7 +41,7 @@ public class SymbolTable
 	   st.put("procedure", "procedure_symbol");
 	   st.put("program", "program_symbol");
 	   //st.put("read", "read_symbol");
-	   //st.put("readln", "readln_symbol");
+	   //st.put("readln", "readln_symbol"); 
 	   st.put("real", "real_symbol");
 	   st.put("then", "then_symbol");
 	   st.put("var", "var_symbol");
