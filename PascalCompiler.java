@@ -22,7 +22,13 @@ public class PascalCompiler
     	TokenQueue tokens = IOModule.LexicalAnalysis(fileName);
     	
     	//call I/O module to process tokens
-    	IOModule.SyntaxAnalysis(tokens);
+    	//TokenQueue checkType = new TokenQueue(tokens);
+    	boolean syntax = IOModule.SyntaxAnalysis(tokens);
+    	if (!syntax) return;
+    	
+    	//call I/O module to perform type checking
+    	boolean semantic = IOModule.SemanticAnalysis(tokens);
+    	if (!semantic) return;
     	
     }
 }

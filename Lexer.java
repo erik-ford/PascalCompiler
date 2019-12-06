@@ -119,13 +119,13 @@ public class Lexer
 	   {
 		   return parseString(c);
 	   }
-	   else if (currToken.matches("\\d+")) //current token is a number
+	   else if (currToken.matches("\\d+\\.?\\d*")) //current token is a number
 	   {
-		   if (Character.isDigit(c))
+		   if (Character.isDigit(c) || c == '.')
 		   {
 			   currToken += c;
 		   }
-		   else //c is not a digit
+		   else //c is not a digit or decimal
 		   {
 			   //validate current token and flush buffer
 			   String temp = currToken;
@@ -194,7 +194,7 @@ public class Lexer
 			   return newToken;
 			   
 		   }
-		   else if (inToken.matches("\\d+")) //token is valid number
+		   else if (inToken.matches("\\d+\\.?\\d*")) //token is valid number
 		   {
 			   Token newToken =  new Token(inToken, "number_symbol");
 			   st.put(newToken);

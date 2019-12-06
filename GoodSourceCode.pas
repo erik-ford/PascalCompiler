@@ -1,10 +1,22 @@
-program example(input,output);
+program example;
+var arr : array [1 .. 10] of integer;
 var x,y:integer;
-function gcd(a,b:integer):integer;
-begin{gcd}
-if b=0 then gcd:=a else gcd:=gcd(b,a mod b)
-end;{gcd}
-begin{example}
-read(x,y);
-write(gcd(x,y))
+var a, b, c : char;
+var z: real;
+begin{comment}
+x:=1;
+y := 2;
+a := 'a';
+b:= 'b';
+c := '4';
+z := 1.234;
+x := arr[2];
+arr[x] := 2;
+x := (y + z) * x;
+if x < y then z := z + x else z := z + y;
+while x >= y do x := x - 1;
+read(x);
+write(x);
+write(a);
+write('hello world');
 end.

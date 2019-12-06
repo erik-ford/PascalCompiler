@@ -131,8 +131,9 @@ public class IOModule
    /***************************************************
     * Calls parser module to perform syntax analysis
     * @param tokens - TokenQueue constructed by Lexer
+    * @return true if no errors, false if errors present
     ***************************************************/
-   public static void SyntaxAnalysis(TokenQueue tokens)
+   public static boolean SyntaxAnalysis(TokenQueue tokens)
    {
 	   boolean success = Parser.start(tokens);
 	   
@@ -140,6 +141,25 @@ public class IOModule
 	   {
 		   System.out.println("Program has no syntax errors.");
 	   }
+	   
+	   return success;
+   }
+   
+   /***************************************************
+    * Calls type checker module to perform semantic analysis
+    * @param tokens - TokenQueue constructed by Lexer
+    * @return true if no errors, false if errors present
+    ***************************************************/
+   public static boolean SemanticAnalysis(TokenQueue tokens)
+   {
+	   boolean success = TypeChecker.start(tokens);
+	   
+	   if (success) 
+	   {
+		   System.out.println("Program has no semantic errors.");
+	   }
+	   
+	   return success;
    }
 }
 
