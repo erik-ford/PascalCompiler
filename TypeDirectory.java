@@ -40,7 +40,8 @@ public class TypeDirectory
 	    ************************************************************/
 	   public String put(Token inToken)
 	   {
-		   return td.put(inToken.getText(), inToken.getSymbol());
+		   Token t = new Token(inToken);
+		   return td.put(t.getText(), t.getSymbol());
 	   }
 	   
 	   /************************************************************
@@ -49,8 +50,9 @@ public class TypeDirectory
 	    ************************************************************/
 	   public void push(Token inToken)
 	   {
-		   inToken.setNext(null);
-		   buffer.push(inToken);
+		   Token t = new Token(inToken);
+		   t.setNext(null);
+		   buffer.push(t);
 	   }
 	   
 	   /************************************************************

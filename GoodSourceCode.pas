@@ -1,5 +1,5 @@
-program example;
-var arr : array [1 .. 10] of integer;
+program example; 
+(*var arr : array [1 .. 10] of integer;*)
 var x,y:integer;
 var a, b, c : char;
 var z: real;
@@ -10,13 +10,17 @@ a := 'a';
 b:= 'b';
 c := '4';
 z := 1.234;
-x := arr[2];
-arr[x] := 2;
-x := (y + z) * x;
+(*x := arr[2];
+arr[x] := 2;*)
+x := (y + x) * x;
 if x < y then z := z + x else z := z + y;
 while x >= y do x := x - 1;
 read(x);
 write(x);
+read(a);
 write(a);
-write('hello world');
+read(z);
+write(z);
+writeln('hello world');
+write('h');
 end.

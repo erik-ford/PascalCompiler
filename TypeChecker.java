@@ -5,7 +5,7 @@
 
 /***********************************************************
  * @author Erik Ford
- * Parser performs the syntax analysis phase of compilation
+ * TypeChecker performs the semantic analysis phase of compilation
  ***********************************************************/
 public class TypeChecker 
 {
@@ -28,6 +28,19 @@ public class TypeChecker
 		else
 		{
 			return false;
+		}
+	}
+	
+	public static TypeDirectory getTypes(TokenQueue inTokens)
+	{
+		TokenQueue tokens = new TokenQueue(inTokens);
+		if (skipToDeclarations(tokens))
+		{
+			return td;
+		}
+		else
+		{
+			return null;
 		}
 	}
 	
@@ -126,7 +139,6 @@ public class TypeChecker
     ******************************************************/
    public static boolean assignments(TokenQueue tokens)
    {
-	   //td.print();
 	   Token t = tokens.pop();
 	   while (tokens.peek() != null)
 	   {

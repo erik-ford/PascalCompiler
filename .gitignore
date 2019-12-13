@@ -7,3 +7,5 @@
 /TypeDirectory.class
 /Parser.class
 /TypeChecker.class
+/IntermediateCodeGenerator.class
+/FinalCode.class

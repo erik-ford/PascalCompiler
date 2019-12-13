@@ -1,0 +1,45 @@
+t1 = 1
+x = t1
+t1 = 2
+y = t1
+t1 = 'a'
+a = t1
+t1 = 'b'
+b = t1
+t1 = '4'
+c = t1
+t1 = 1.234
+z = t1
+t1 = arr[2]
+x = t1
+t1 = x
+t2 = 2
+arr[t1] = t2
+t1 = y + x
+t2 = t1 * x
+x = t2
+IF1: t1 = x
+t2 = y
+if t1 < t2 goto TRUE1
+FALSE1: t1 = z + y
+z = t1
+goto END1
+TRUE1: t1 = z + x
+z = t1
+END1:
+WHILE2: t1 = x
+t2 = y
+if t1 >= t2 goto DO2
+goto EXIT2
+DO2: t1 = x - 1
+x = t1
+goto WHILE2
+EXIT2:
+t1 = x
+read t1
+t1 = x
+write t1
+t1 = a
+writeln t1
+t1 = 'hello world'
+write t1

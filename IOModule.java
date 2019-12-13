@@ -32,7 +32,7 @@ public class IOModule
 	   currLine = sourceLineChars.get(currLineIndex);
 	   tokens = Lexer.getTokens();
 	   
-	   //First delivery: Print out list of tokens and symbol types////////////////////////////////////////////
+	   //Print out list of tokens and symbol types////////////////////////////////////////////
 	   TokenQueue printTokens = new TokenQueue(tokens);
 	   PrintWriter writer = null;
 	   try 
@@ -48,18 +48,14 @@ public class IOModule
 	   writer.printf("%-25s %-25s \n", "Token text:", "Symbol type:");
 	   writer.printf("%-25s %-25s \n", "----------------", "-----------------");
 	   
-	   //if (printTokens.isEmpty()) {System.out.println("Token copying failed.");}
-	   
 	   while (!printTokens.isEmpty())
 	   {
 		   Token t = printTokens.pop();
 		   //System.out.println(t.getText() + "\t\t" + t.getSymbol());
 		   writer.printf("%-25s %-25s \n", t.getText(), t.getSymbol());
 	   }
-	   //if (tokens.isEmpty()) {System.out.println("Reference copy made.");}
 	   writer.close();
 	   //////////////////////////////////////////////////////////////////////////////////////////////////////
-	   
 	   return tokens;
    }
    
@@ -160,6 +156,37 @@ public class IOModule
 	   }
 	   
 	   return success;
+   }
+   
+   public static boolean FinalCodeGen(TokenQueue tokens)
+   {
+	   String success = FinalCode.start(tokens);
+	   
+	   if (success == null)
+	   {
+	      return false;
+	   }
+	   else
+	   {
+		   //TODO : print to file
+		   PrintWriter writer = null;
+		   try 
+		   {
+			   writer = new PrintWriter("FinalCode.txt");
+		   }
+		   catch (Exception e)
+		   {
+			   System.err.println("Error writing to output file.");
+			   System.exit(-1);
+		   }
+		   
+		   writer.print(success);
+		   writer.close();
+		   System.out.println("Machine code generation complete.");
+		   return true;
+	   }
+	   
+	   
    }
 }
 

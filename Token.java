@@ -28,6 +28,12 @@ public class Token
       next = null;
    }
    
+   public Token(Token inToken)
+   {
+	   this.text = inToken.text;
+	   this.symbol = inToken.symbol;
+   }
+   
    /********************************************
     * Returns text associated with Token
     * @return String containing Token text
