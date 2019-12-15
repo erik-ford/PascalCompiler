@@ -1,9 +1,9 @@
-import java.util.Hashtable;
-
 //Erik Ford
 //CSCI 465
 //Compiler Project
-//last updated 11-11-19
+//last updated 12-15-19
+
+import java.util.Hashtable;
 
 /***********************************************************
  * @author Erik Ford
@@ -15,9 +15,9 @@ public class TypeDirectory
 	public Hashtable<String, String> td = new Hashtable<String, String>(); //type directory
 	public TokenQueue buffer = new TokenQueue(); //used for processing declarations
 	
-	/***************************************
-	    * Constructor method for SymbolTable
-	    * @return an empty SymbolTable
+	   /***************************************
+	    * Constructor method for TypeDirectory
+	    * @return an empty TypeDirectory
 	    ***************************************/
 	   public TypeDirectory()
 	   {
@@ -25,23 +25,13 @@ public class TypeDirectory
 	   }
 	   
 	   /************************************************************
-	    * Returns symbol identifier based on token text
-	    * @param inKey - token text to lookup in SymbolTable
-	    * @return associated symbol identifier, null if not found
+	    * Returns type associated with variable name
+	    * @param inKey - variable name to look up
+	    * @return associated type, null if not found
 	    ************************************************************/
 	   public String get(String inKey)
 	   {
 		   return td.get(inKey);
-	   }
-	   
-	   /************************************************************
-	    * Inserts new symbol into SymbolTable
-	    * @param inToken - token to be added to SymbolTable
-	    ************************************************************/
-	   public String put(Token inToken)
-	   {
-		   Token t = new Token(inToken);
-		   return td.put(t.getText(), t.getSymbol());
 	   }
 	   
 	   /************************************************************
@@ -55,10 +45,10 @@ public class TypeDirectory
 		   buffer.push(t);
 	   }
 	   
-	   /************************************************************
+	   /****************************************************************
 	    * Flushes buffer into TypeDirectory with correct type
 	    * @param type - type of variables to be added to TypeDirectory
-	    ************************************************************/
+	    ****************************************************************/
 	   public void flush(String type)
 	   {
 		   while (buffer.head != null)
@@ -69,10 +59,14 @@ public class TypeDirectory
 		   buffer.tail = null;
 	   }
 	   
+	   /******************************************
+	    * Prints out contents of TypeDirectory
+	    * Used for debugging purposes
+	    ******************************************/
 	   public void print()
 	   {
 		   td.forEach((k, v) -> {
 			   System.out.println("Key: '" + k + "'\tValue: '" + v + "'");
 		   });
 	   }
-	}
+}

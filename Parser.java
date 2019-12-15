@@ -1,7 +1,7 @@
 //Erik Ford
 //CSCI 465
 //Compiler Project
-//last updated 11-14-19
+//last updated 12-15-19
 
 /***********************************************************
  * @author Erik Ford
@@ -355,7 +355,6 @@ public class Parser
 	   }
 	   else //next symbol is not <integer> or <real> or <char>
 	   {
-		   //System.out.println("ERROR: invalid type (2) on line " + lineNumber);
 		   return false;
 	   }
    }
@@ -398,7 +397,6 @@ public class Parser
 	   }
 	   else //not a compound statement
 	   {
-		   //System.out.println("ERROR: invalid compound_statement on line " + lineNumber);
 		   return false;
 	   }
    }
@@ -605,7 +603,6 @@ public class Parser
 	   }
 	   else //not a variable
 	   {
-		   //System.out.println("ERROR: invalid variable on line " + lineNumber);
 		   return false;
 	   }
    }
@@ -680,7 +677,6 @@ public class Parser
 	   }
 	   else //not an expression
 	   {
-		   //System.out.println("ERROR: invalid expression on line " + lineNumber);
 		   return false;
 	   }
    }
@@ -753,7 +749,6 @@ public class Parser
 	   }
 	   else //not a simple_expression
 	   {
-		   //System.out.println("ERROR: invalid simple_expression on line " + lineNumber);
 		   return false;
 	   }
    }
@@ -845,7 +840,6 @@ public class Parser
 	   }
 	   else //not a term
 	   {
-		   //System.out.println("ERROR: invalid term on line " + lineNumber);
 		   return false;
 	   }
    }
@@ -947,7 +941,6 @@ public class Parser
 	   }
 	   else //not a factor
 	   {
-		   //System.out.println("ERROR: invalid factor on line " + lineNumber);
 		   return false;
 	   }
    }

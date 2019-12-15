@@ -1,12 +1,13 @@
 //Erik Ford
 //CSCI 465
 //Compiler Project
-//last updated 11-14-19
+//last updated 12-15-19
 
-/***********************************************************
+/**********************************************
  * @author Erik Ford
- * TypeChecker performs the semantic analysis phase of compilation
- ***********************************************************/
+ * TypeChecker performs the semantic analysis 
+   phase of compilation
+ **********************************************/
 public class TypeChecker 
 {
 	private static int lineNumber = 1;
@@ -31,6 +32,12 @@ public class TypeChecker
 		}
 	}
 	
+	/*******************************************
+	 * Sends a populated TypeDictionary to the
+	   final code generation module
+	 * @param inTokens - tokens to be processed
+	 * @return a full TypeDirectory
+	 *******************************************/
 	public static TypeDirectory getTypes(TokenQueue inTokens)
 	{
 		TokenQueue tokens = new TokenQueue(inTokens);
@@ -61,8 +68,6 @@ public class TypeChecker
 	   }
 	   
 	   return declarations(tokens);
-	   
-	    
    }
    
    /******************************************************
@@ -129,7 +134,6 @@ public class TypeChecker
 	   
 	   return assignments(tokens);
 	}
-
    
    /******************************************************
     * This method verifies type compatibility of all
@@ -246,14 +250,12 @@ public class TypeChecker
 				   String type2 = evalExpression(tokens);
 				   return calcType(type1, type2);
 			   }
-		   }
-		   
+		   }   
 		   else
 		   {
 			   tokens.pop();
 		   }
 	   }
-	   
    }
    
    /******************************************************
@@ -280,7 +282,7 @@ public class TypeChecker
    }
    
    /******************************************************
-    * This method calculates the type of an expression
+    * This method validates the type of an expression
       given the two operands' types
     * @param type1 - type of left operand
     * @param type2 - type of right operand
@@ -300,7 +302,5 @@ public class TypeChecker
 	   {
 		   return true;
 	   }
-   }
-   
-   
+   }  
 }

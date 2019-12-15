@@ -1,7 +1,7 @@
 //Erik Ford
 //CSCI 465
 //Compiler Project
-//last updated 11-14-19
+//last updated 12-15-19
 
 /*************************************************
  * @author Erik Ford
@@ -28,6 +28,11 @@ public class Token
       next = null;
    }
    
+   /***************************************
+    * Constructor method of a Token
+    * @param inToken - Token to be copied
+    * @return a newly copied Token
+    ***************************************/
    public Token(Token inToken)
    {
 	   this.text = inToken.text;
@@ -68,6 +73,5 @@ public class Token
    public Token getNext()
    {
 	   return next;
-   }
-   
+   }  
 }

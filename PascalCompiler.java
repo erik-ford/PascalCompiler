@@ -1,7 +1,7 @@
 //Erik Ford
 //CSCI 465
 //Compiler Project
-//last updated 12-10-19
+//last updated 12-15-19
 
 /********************************************
  * @author Erik Ford
@@ -10,6 +10,10 @@
  ********************************************/
 public class PascalCompiler 
 {
+	/*****************************************
+	 * main function
+	 * @param args - command line arguments
+	 *****************************************/
     public static void main(String[] args)
     {
     	//declaration of variables
@@ -29,13 +33,8 @@ public class PascalCompiler
     	boolean semantic = IOModule.SemanticAnalysis(tokens);
     	if (!semantic) return;
     	
-    	//call I/O module to generate IC
+    	//call I/O module to generate MIPS code
     	boolean fcg = IOModule.FinalCodeGen(tokens);
-    	if (!fcg) return;
-    	
-    	
-    	
-    	
-    	
+    	if (!fcg) return;    	
     }
 }

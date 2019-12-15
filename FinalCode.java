@@ -1,17 +1,16 @@
-import java.util.Map;
-
 //Erik Ford
 //CSCI 465
 //Compiler Project
-//last updated 11-14-19
+//last updated 12-15-19
+
+import java.util.Map;
 
 /***********************************************************
  * @author Erik Ford
- * Generates intermediate representation of the source program
+ * Generates machine code for the source program
  ***********************************************************/
 public class FinalCode 
 {
-	private static int lineNumber = 1;
 	private static String program = ".text\n";
 	private static String data = ".data\n";
 	private static int labelCount = 0;
@@ -49,16 +48,9 @@ public class FinalCode
    {
 	   while (tokens.peek() != null && !tokens.peek().getSymbol().equals("begin_symbol"))
 	   {
-		   if (tokens.peek().getSymbol().equals("newline_symbol")) //new line
-		   {
-			   lineNumber++;
-		   }
 		   tokens.pop();
 	   }
-	   //System.out.println("Line "  + lineNumber);
-	   return declarations(tokens);
-	   
-	    
+	   return declarations(tokens);    
    }
    
    
@@ -73,15 +65,12 @@ public class FinalCode
 	   {
 		   String var = e.getKey();
 		   String type = e.getValue();
-		   //System.out.println(var + " : " + type);
 		   data += var + ": ";
 		   if (type.equals("char")) {data += ".word 0\n";}
 		   else if (type.equals("integer")) {data += ".word 0\n";}
 		   else if (type.equals("real")) {data += ".double 0\n";}
 	   }
-	   return statements(tokens);
-	   
-	    
+	   return statements(tokens);	    
    }
    
    /******************************************************
@@ -95,7 +84,6 @@ public class FinalCode
 	   tokens.pop();
 	   while (tokens.peek() != null)
 	   {
-		   //System.out.println("here");
 		  Token t = tokens.pop();
 		  if (t.getSymbol().equals("identifier_symbol")) //variable
 		  {
@@ -122,29 +110,27 @@ public class FinalCode
 			  writeln(tokens);
 		  }
 	   }
-	   
 	   return true;
    }
    
    /********************************************************
     * This method will convert assignment statements
-      into intermediate representation
+      into corresponding machine code
     * @param lhs - Token for left hand side of statement
     * @param tokens - TokenQueue of source program
+    * @param marker - expected end of statement character
     ********************************************************/
    public static void assignment(Token lhs, TokenQueue tokens, String marker)
    {
 	   tokens.pop(); //:=
-	   //program += lhs.getText();
 	   String reg = rhs(tokens, marker);
-	   //program += "\n";
 	   program += "sw " + reg + ", " + lhs.getText() + "\n";
 	   regCount = 0;
    }
    
    /********************************************************
-    * This method will convert assignment statements
-      into intermediate representation
+    * This method will convert expressions into
+      corresponding machine code
     * @param marker - end of statement marker
     * @param tokens - TokenQueue of source program
     * @return string of code text
@@ -206,8 +192,9 @@ public class FinalCode
    /********************************************************
     * This method will determine the correct operation for
       the MIPS instruction set
-    * @param marker - end of statement marker
-    * @param tokens - TokenQueue of source program
+    * @param op1 - left operand register
+    * @param operator - operator to determine correct operation
+    * @param op2 - right operand register
     * @return string of code text
     ********************************************************/
    public static String operation(String op1, String operator, String op2)
@@ -245,8 +232,7 @@ public class FinalCode
    
    /********************************************************
     * This method will convert if statements
-      into intermediate representation
-    * @param lhs - Token for left hand side of statement
+      into machine code
     * @param tokens - TokenQueue of source program
     ********************************************************/
    public static void ifStatement(TokenQueue tokens)
@@ -276,9 +262,8 @@ public class FinalCode
    }
    
    /********************************************************
-    * This method will convert if statements
-      into intermediate representation
-    * @param lhs - Token for left hand side of statement
+    * This method will convert while loops
+      into corresponding machine code
     * @param tokens - TokenQueue of source program
     ********************************************************/
    public static void whileStatement(TokenQueue tokens)
@@ -306,8 +291,7 @@ public class FinalCode
    
    /********************************************************
     * This method will convert write statements
-      into intermediate representation
-    * @param lhs - Token for left hand side of statement
+      into corresponding machine code
     * @param tokens - TokenQueue of source program
     ********************************************************/
    public static void write(TokenQueue tokens)
@@ -346,16 +330,14 @@ public class FinalCode
 		   program += "li $v0, 11\n";
 		   program += "li $a0, " + chr + "\n";
 	   }
-
 	   program += "syscall\n";
 	   tokens.pop(); //)
 	   tokens.pop(); //;
    }
    
    /********************************************************
-    * This method will convert write statements
-      into intermediate representation
-    * @param lhs - Token for left hand side of statement
+    * This method will convert writeln statements
+      into corresponding machine code
     * @param tokens - TokenQueue of source program
     ********************************************************/
    public static void writeln(TokenQueue tokens)
@@ -368,7 +350,7 @@ public class FinalCode
    
    /********************************************************
     * This method will convert read statements
-      into intermediate representation
+      into corresponding machine code
     * @param lhs - Token for left hand side of statement
     * @param tokens - TokenQueue of source program
     ********************************************************/
@@ -400,9 +382,5 @@ public class FinalCode
 	   }
 	   tokens.pop(); //)
 	   tokens.pop(); //;
-   }
-   
-   
-
-   
+   }  
 }

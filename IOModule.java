@@ -1,7 +1,7 @@
 //Erik Ford
 //CSCI 465
 //Compiler Project
-//last updated 11-14-19
+//last updated 12-15-19
 
 import java.io.*;
 import java.util.*;
@@ -18,11 +18,12 @@ public class IOModule
 	private static char[] currLine; //current line being processed
 	private static ArrayList<char[]> sourceLineChars = new ArrayList<char[]>(); //arraylist of source file lines split into char arrays
 	
-	/***************************************
+	/*******************************************************
 	 * Handles I/O for lexical analysis
 	   phase of compilation
 	 * @param inFile - name of source file
-	 ***************************************/
+	 * @return a TokenQueue representing the source program
+	 *******************************************************/
    public static TokenQueue LexicalAnalysis(String inFile)
    {
 	   TokenQueue tokens;
@@ -67,7 +68,7 @@ public class IOModule
     ************************************************/
    public static void readFile(String inFile)
    {
-	 //declaration of variables
+	   //declaration of variables
 	   File src = null;
 	   Scanner scnr = null;
 	   
@@ -95,8 +96,7 @@ public class IOModule
    
    /*************************************************
     * Sends next char from file to Lexer
-    * @return a String of length 1 with next char
-      or "!_eof_!" if end of file
+    * @return next char in source program
     *************************************************/
    public static char getNextChar()
    {
@@ -141,11 +141,11 @@ public class IOModule
 	   return success;
    }
    
-   /***************************************************
+   /**********************************************************
     * Calls type checker module to perform semantic analysis
     * @param tokens - TokenQueue constructed by Lexer
     * @return true if no errors, false if errors present
-    ***************************************************/
+    **********************************************************/
    public static boolean SemanticAnalysis(TokenQueue tokens)
    {
 	   boolean success = TypeChecker.start(tokens);
@@ -158,6 +158,11 @@ public class IOModule
 	   return success;
    }
    
+   /**********************************************************
+    * Calls final code module to generate MIPS instructions
+    * @param tokens - TokenQueue constructed by Lexer
+    * @return true if no errors, false if errors present
+    **********************************************************/
    public static boolean FinalCodeGen(TokenQueue tokens)
    {
 	   String success = FinalCode.start(tokens);
@@ -168,7 +173,7 @@ public class IOModule
 	   }
 	   else
 	   {
-		   //TODO : print to file
+		   //print to file
 		   PrintWriter writer = null;
 		   try 
 		   {
@@ -184,9 +189,6 @@ public class IOModule
 		   writer.close();
 		   System.out.println("Machine code generation complete.");
 		   return true;
-	   }
-	   
-	   
+	   }	   
    }
 }
-

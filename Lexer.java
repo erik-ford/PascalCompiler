@@ -1,7 +1,7 @@
 //Erik Ford
 //CSCI 465
 //Compiler Project
-//last updated 11-14-19
+//last updated 12-15-19
 
 /************************************************
  * @author Erik Ford
@@ -66,9 +66,6 @@ public class Lexer
 	   }
 	   
 	   return tokens;
-	   
-	   //end of file reached
-	   
    }
    
    /******************************************************
@@ -173,6 +170,7 @@ public class Lexer
    
    /********************************************************
     * Checks if currToken is a valid token
+    * @param inToken - Token to be validated
     * @return a Token object to be added to the TokenQueue,
               or illegal token if not valid token type,
               or null if whitespace token

@@ -1,7 +1,7 @@
 //Erik Ford
 //CSCI 465
 //Compiler Project
-//last updated 11-14-19
+//last updated 12-15-19
 
 /***********************************************************
  * @author Erik Ford
@@ -16,7 +16,7 @@ public class TokenQueue
    
    /*******************************************
     * Constructor method of a TokenQueue.
-    * @return Initializes empty TokenQueue.
+    * @return Initialized empty TokenQueue.
     *******************************************/
    public TokenQueue()
    {
@@ -26,7 +26,7 @@ public class TokenQueue
    
    /*******************************************
     * Constructor method to copy a TokenQueue.
-    * @return Initializes copied TokenQueue.
+    * @return Initialized copied TokenQueue.
     *******************************************/
    public TokenQueue(TokenQueue copy)
    {

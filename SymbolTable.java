@@ -1,7 +1,7 @@
 //Erik Ford
 //CSCI 465
 //Compiler Project
-//last updated 11-14-19
+//last updated 12-15-19
 
 import java.util.*;
 
@@ -12,7 +12,6 @@ import java.util.*;
  **********************************************************/
 public class SymbolTable 
 {
-   
    public Hashtable<String, String> st = new Hashtable<String, String>(); //symbol table
 	
    /***************************************
@@ -85,8 +84,8 @@ public class SymbolTable
     * Inserts new symbol into SymbolTable
     * @param inToken - token to be added to SymbolTable
     ************************************************************/
-   public String put(Token inToken)
+   public void put(Token inToken)
    {
-	   return st.put(inToken.getText(), inToken.getSymbol());
+	   st.put(inToken.getText(), inToken.getSymbol());
    }
 }
